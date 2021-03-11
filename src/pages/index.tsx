@@ -1,4 +1,5 @@
 import * as React from "react"
+import cn from "clsx"
 
 const cards = [
   {
@@ -250,26 +251,37 @@ const Home = () => {
     tempCards = [...cards]
   }
 
+  const btnStyles = "block py-2 px-3 my-4 bg-gray-50 border rounded-md"
+
   return (
-    <>
-      <div>
-        {myHand.score === 21 ? <p>Blackjack</p> : null}
-        {myHand.score > 21 ? <p>Game over</p> : null}
-        <p>
-          hand:
-          {myHand.hand.map((card, idx) => (
-            <span key={idx}> {card.name} </span>
-          ))}
-        </p>
-        <p>score: {myHand.score}</p>
-      </div>
-      <div>
-        <button onClick={draw}>draw card</button>
-      </div>
-      <div>
-        <button onClick={reset}>reset</button>
-      </div>
-    </>
+    <div className="p-4">
+      {myHand.score === 21 ? <p>Blackjack</p> : null}
+      {myHand.score > 21 ? <p>Game over</p> : null}
+      <p>
+        hand:
+        {myHand.hand.map((card, idx) => (
+          <span key={idx}> {card.name} </span>
+        ))}
+      </p>
+      <p>score: {myHand.score}</p>
+
+      <button
+        className={cn(
+          btnStyles,
+          myHand.score >= 21
+            ? "cursor-not-allowed text-gray-400 bg-gray-200 border-gray-200"
+            : "border-gray-500"
+        )}
+        onClick={draw}
+        disabled={myHand.score >= 21}
+      >
+        draw card
+      </button>
+
+      <button className={cn(btnStyles, "border-gray-500")} onClick={reset}>
+        reset
+      </button>
+    </div>
   )
 }
 
