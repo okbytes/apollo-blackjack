@@ -65,8 +65,8 @@ const Home = () => {
     })
   }
 
-  async function reset() {
-    await getCards()
+  function reset() {
+    getCards()
     setHand(emptyHand)
   }
 
