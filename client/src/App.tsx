@@ -98,10 +98,31 @@ const Home = () => {
         <strong>Score:</strong> {hand.score}
       </p>
 
-      <button style={{ marginRight: "2rem" }} onClick={draw} disabled={loading || hand.score >= 21}>
+      <button
+        style={{
+          cursor: "pointer",
+          background: "white",
+          border: "1px solid black",
+          padding: "0.25rem 0.5rem 0.35rem",
+          borderRadius: "4px",
+          marginRight: "2rem"
+        }}
+        onClick={draw}
+        disabled={loading || hand.score >= 21}
+      >
         🃏 Draw a card
       </button>
-      <button onClick={reset} disabled={loading}>
+      <button
+        style={{
+          cursor: "pointer",
+          background: "white",
+          border: "1px solid black",
+          padding: "0.25rem 0.5rem 0.35rem",
+          borderRadius: "4px"
+        }}
+        onClick={reset}
+        disabled={loading}
+      >
         💣 Reset
       </button>
     </div>
