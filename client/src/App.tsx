@@ -71,61 +71,66 @@ const Home = () => {
     setHand(emptyHand)
   }
 
-  if (loading) {
-    return <p>Loading...</p>
-  }
-
   if (error) {
     return <p>ERROR</p>
   }
 
   return (
     <div style={{ padding: "3rem 6rem" }}>
-      {hand.score < 21 ? <h3>🃏🃏🃏 Draw a card to play 🃏🃏🃏</h3> : null}
-      {hand.score === 21 ? <h3 style={{ color: "green" }}>🎉🎊✨ Polyjack ✨🎊🎉</h3> : null}
-      {hand.score > 21 ? <h3 style={{ color: "red" }}>💥 Game over 💥</h3> : null}
+      {hand.score < 21 ? <h3 style={{ color: "rebeccapurple" }}>Draw a card to play 🃏</h3> : null}
+      {hand.score === 21 ? <h3 style={{ color: "green" }}>Polyjack ✨🎊🎉</h3> : null}
+      {hand.score > 21 ? <h3 style={{ color: "red" }}>Game over 💥</h3> : null}
       <p>
-        <strong>Hand:</strong> [{" "}
+        <strong>Hand:</strong>
         {hand.cards.map((card: Card, idx: number, cards: Card[]) => (
           <span key={idx}>
             {" "}
             {card.name}
             {idx === cards.length - 1 ? "" : ","}{" "}
           </span>
-        ))}{" "}
-        ]
+        ))}
       </p>
       <p style={{ marginBottom: "1.5rem" }}>
         <strong>Score:</strong> {hand.score}
       </p>
-
-      <button
-        style={{
-          cursor: "pointer",
-          background: "white",
-          border: "1px solid black",
-          padding: "0.25rem 0.5rem 0.35rem",
-          borderRadius: "4px",
-          marginRight: "2rem"
-        }}
-        onClick={draw}
-        disabled={loading || hand.score >= 21}
-      >
-        🃏 Draw a card
-      </button>
-      <button
-        style={{
-          cursor: "pointer",
-          background: "white",
-          border: "1px solid black",
-          padding: "0.25rem 0.5rem 0.35rem",
-          borderRadius: "4px"
-        }}
-        onClick={reset}
-        disabled={loading}
-      >
-        💣 Reset
-      </button>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <button
+            style={{
+              fontWeight: 600,
+              textTransform: "uppercase",
+              fontSize: "0.75rem",
+              background: "white",
+              padding: "0.425rem 0.5rem",
+              borderRadius: "0.35rem",
+              border: "none",
+              boxShadow: "0 0 0 1px rgba(0,0,0,0.1), 0 1px 4px 0 rgba(0,0,0,0.15)",
+              marginRight: "2rem"
+            }}
+            onClick={draw}
+            disabled={hand.score >= 21}
+          >
+            🃏 Draw a card
+          </button>
+          <button
+            style={{
+              fontWeight: 600,
+              textTransform: "uppercase",
+              fontSize: "0.75rem",
+              background: "white",
+              padding: "0.425rem 0.5rem",
+              borderRadius: "0.35rem",
+              border: "none",
+              boxShadow: "0 0 0 1px rgba(0,0,0,0.1), 0 1px 4px 0 rgba(0,0,0,0.15)"
+            }}
+            onClick={reset}
+          >
+            💣 Reset
+          </button>
+        </>
+      )}
     </div>
   )
 }
