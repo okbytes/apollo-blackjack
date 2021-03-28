@@ -77,9 +77,13 @@ const Home = () => {
 
   return (
     <div style={{ padding: "3rem 6rem" }}>
-      {hand.score < 21 ? <h3 style={{ color: "rebeccapurple" }}>Draw a card to play 🃏</h3> : null}
-      {hand.score === 21 ? <h3 style={{ color: "green" }}>Polyjack ✨🎊🎉</h3> : null}
-      {hand.score > 21 ? <h3 style={{ color: "red" }}>Game over 💥</h3> : null}
+      {hand.score < 21 ? (
+        <h3 style={{ color: "rebeccapurple" }}>Draw a card to play 🃏</h3>
+      ) : hand.score === 21 ? (
+        <h3 style={{ color: "green" }}>Polyjack ✨🎊🎉</h3>
+      ) : (
+        <h3 style={{ color: "red" }}>Game over 💥</h3>
+      )}
       <p>
         <strong>Hand:</strong>
         {hand.cards.map((card: Card, idx: number, cards: Card[]) => (
