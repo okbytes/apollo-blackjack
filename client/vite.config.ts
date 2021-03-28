@@ -1,7 +1,8 @@
-import { defineConfig } from 'vite'
-import reactRefresh from '@vitejs/plugin-react-refresh'
+import { defineConfig } from "vite"
+import eslint from "@rollup/plugin-eslint"
+import reactRefresh from "@vitejs/plugin-react-refresh"
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [reactRefresh()]
+  plugins: [{ ...eslint({ include: "src/**/*.+(ts|tsx)" }), enforce: "pre" }, reactRefresh()]
 })

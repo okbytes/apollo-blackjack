@@ -1,5 +1,6 @@
 import * as React from "react"
-import { useLazyQuery, gql } from "@apollo/client"
+
+import { gql, useLazyQuery } from "@apollo/client"
 
 const GET_CARDS = gql`
   query Query {
@@ -31,7 +32,7 @@ let deck: Card[] = []
 
 const Home = () => {
   const [hand, setHand] = React.useState<Hand>(emptyHand)
-  const [getCards, { data, loading, error }] = useLazyQuery(GET_CARDS, {
+  const [getCards, { data, loading, error }] = useLazyQuery<{ cards: Card[] }>(GET_CARDS, {
     fetchPolicy: "no-cache"
   })
 
